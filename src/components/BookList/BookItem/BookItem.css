@@ -1,0 +1,14 @@
+.bookitem {
+    display: flex;
+    padding-bottom: 20px;
+}
+
+.bookitem__img {
+    padding-right: 10px;
+    margin-top: 10px;
+    min-width: 30%;
+}
+
+.bookitem__info {
+    text-align: left;
+}

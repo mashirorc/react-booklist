@@ -1,0 +1,10 @@
+.booklist{
+    width: 50%;
+}
+.booklist__content {
+    list-style-type: none;
+}
+
+.booklist li {
+    border-bottom:1px solid rgb(240, 240, 240);
+}

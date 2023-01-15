@@ -1,0 +1,12 @@
+.wishitem{
+    display: flex;
+    justify-content: space-between;
+}
+
+.wishitem__title{
+    width: 80%;
+}
+
+.wishitem__delete-button{
+    width: 20%;
+}
