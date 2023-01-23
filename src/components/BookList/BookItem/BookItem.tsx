@@ -1,12 +1,26 @@
 import './BookItem.css'
 import { useDispatch } from 'react-redux'
-import wishlistActions from '../../../action/wishlistAction'
+import { addToWishList } from '../../../reducer/wishlistSlice'
+import React from 'react'
 
-export default function BookItem (props){
+type AppProps = {
+    id: string,
+    info: {
+        imageLinks: {thumbnail: string}
+        title: string
+        authors: string[]
+        publisher: string
+        publishedDate: string
+        description: string
+    }
+
+}
+
+export default function BookItem (props: AppProps){
     const {id, info} = props
     const dispatch = useDispatch()
     return (
-        <li className="bookitem" onClick={() => dispatch(wishlistActions.addToWishList(id, info.title))}>
+        <li className="bookitem" onClick={() => dispatch(addToWishList({id, title:info.title}))}>
             <div className='bookitem__img'>
                 <img src={info.imageLinks?.thumbnail} alt={info.title}/>
             </div>

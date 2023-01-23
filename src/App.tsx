@@ -1,20 +1,15 @@
 import './App.css';
 import React from 'react';
-import thunk from 'redux-thunk'
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import BookList from './components/BookList/BookList';
-import rootReducer from './reducer/rootReducer';
 import Searchbar from "./components/Searchbar";
-import WishList from './components/WishList/WishList';import {
+import WishList from './components/WishList/WishList';
+import store from './app/store';
+import {
   BrowserRouter as Router,
   Routes,
-  Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
-
-const store = createStore(rootReducer, applyMiddleware(thunk));
 
 
 function App() {
@@ -22,7 +17,7 @@ function App() {
     <Router>
       <Provider store = {store}>
         <div className="App">
-          <Searchbar></Searchbar>
+          <Searchbar />
           <div className='content'>
             <Routes>
               <Route path='/' element={<BookList />}/>

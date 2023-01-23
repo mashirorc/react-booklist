@@ -1,30 +1,29 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams, useNavigate } from 'react-router-dom'
+import React, { ChangeEvent, useState } from "react";
+import { useNavigate } from 'react-router-dom'
 
 function Searchbar (){
 
     const [searchText, setSearchText] = useState("")
     const navigate = useNavigate()
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
         if (searchText.trim() === "") {
             return;
-          } else {
+        } else {
             navigate(`/${searchText}/1`)
-          }
+        }
+        event.preventDefault()
     }
 
-    const handleInput = (e) => {
+    const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchText(e.target.value)
     }
 
     return (
             <div className="searchbar">
-                <form>
+                <form onSubmit={handleSubmit}>
                     <input value={searchText} onChange={handleInput}/>
-                    <input type="submit" onClick={handleSubmit}/>
+                    <input type="submit"/>
                 </form>
             </div>
         )
