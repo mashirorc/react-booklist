@@ -1,20 +1,18 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux";
+import { useParams, useNavigate } from 'react-router-dom'
 
 function Searchbar (){
 
     const [searchText, setSearchText] = useState("")
-    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
         if (searchText.trim() === "") {
             return;
           } else {
-            // make api call and save to context
-            fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchText}&maxResults=20`)
-            .then(res => res.json())
-            .then(data => dispatch({type: 'SET_BOOKS', payload: data.items}))
+            navigate(`/${searchText}/1`)
           }
     }
 

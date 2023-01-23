@@ -5,21 +5,35 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import BookList from './components/BookList/BookList';
 import rootReducer from './reducer/rootReducer';
-import WishList from './components/WishList/WishList';
+import Searchbar from "./components/Searchbar";
+import WishList from './components/WishList/WishList';import {
+  BrowserRouter as Router,
+  Routes,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 
 function App() {
   return (
-    <Provider store = {store}>
-      <div className="App">
-        <div className='content'>
-          <BookList></BookList>
-          <WishList></WishList>
+    <Router>
+      <Provider store = {store}>
+        <div className="App">
+          <Searchbar></Searchbar>
+          <div className='content'>
+            <Routes>
+              <Route path='/' element={<BookList />}/>
+              <Route path='/:keyword/:page' element={<BookList />}/>
+            </Routes>
+            <WishList />
+          </div>
         </div>
-      </div>
-    </Provider>
+      </Provider>
+    </Router>
+    
   );
 }
 
